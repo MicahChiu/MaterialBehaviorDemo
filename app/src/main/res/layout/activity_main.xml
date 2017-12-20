@@ -24,4 +24,10 @@
         android:layout_height="wrap_content"
         android:onClick="scaleUpShowBehaviorClick"
         android:text="ScaleUpShowBehaviorDemo" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="pullImgStretchBehaviorDemoClick"
+        android:text="PullImgStretchBehaviorDemo" />
 </LinearLayout>

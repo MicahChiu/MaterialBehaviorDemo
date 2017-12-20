@@ -20,6 +20,7 @@
         <activity android:name="net.ingx.material.behavior.BottomSheetBehaviorDemo" />
         <activity android:name="net.ingx.material.behavior.BottomSheetBehaviorDialogDemo" />
         <activity android:name="net.ingx.material.behavior.ScaleUpShowBehaviorDemo" />
+        <activity android:name="net.ingx.material.behavior.PullImgStretchBehaviorDemo" />
     </application>
 
 </manifest>

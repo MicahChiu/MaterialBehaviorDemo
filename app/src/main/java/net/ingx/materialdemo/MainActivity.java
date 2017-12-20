@@ -7,9 +7,15 @@ import android.view.View;
 
 import net.ingx.material.behavior.BottomSheetBehaviorDemo;
 import net.ingx.material.behavior.BottomSheetBehaviorDialogDemo;
+import net.ingx.material.behavior.PullImgStretchBehaviorDemo;
 import net.ingx.material.behavior.ScaleUpShowBehaviorDemo;
 
 public class MainActivity extends AppCompatActivity {
+
+    public void pullImgStretchBehaviorDemoClick(View view){
+        Intent intent = new Intent(this, PullImgStretchBehaviorDemo.class);
+        startActivity(intent);
+    }
 
     public void scaleUpShowBehaviorClick(View view){
         Intent intent = new Intent(this, ScaleUpShowBehaviorDemo.class);
