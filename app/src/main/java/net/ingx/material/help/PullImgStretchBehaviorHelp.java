@@ -16,12 +16,14 @@ import android.view.View;
  * @date 创建时间：2017/12/20
  * @action
  */
-public class PullImgStretchBehaviorHelp extends AppBarLayout.Behavior{
-    private static final String TAG = "BehaviorHelp" ;
+public class PullImgStretchBehaviorHelp extends AppBarLayout.Behavior {
+    private static final String TAG = "BehaviorHelp";
     private boolean isAnimatingOut = false;
+    private PullStretchBehaviorListener mPullStretchBehaviorListener;
+
     private int mParentHeight;
     // 控件的高度
-    private int mLastdyUnconsumed = 0 ;
+    private int mLastdyUnconsumed = 0;
     // 消除相同的振幅
 
     public PullImgStretchBehaviorHelp() {
@@ -31,9 +33,14 @@ public class PullImgStretchBehaviorHelp extends AppBarLayout.Behavior{
         super(context, attrs);
     }
 
+    public void setPullStretchBehaviorListener(PullStretchBehaviorListener pullStretchBehaviorListener) {
+        this.mPullStretchBehaviorListener = pullStretchBehaviorListener;
+    }
+
     /* 初始化计算 */
     private void calculateAppBarLayout(AppBarLayout abl) {
         mParentHeight = abl.getHeight();
+        abl.setClipChildren(false);
     }
 
     @Override
@@ -53,16 +60,9 @@ public class PullImgStretchBehaviorHelp extends AppBarLayout.Behavior{
         super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, type);
         if (mLastdyUnconsumed == dyUnconsumed)
             return;
-        this.mLastdyUnconsumed = dyUnconsumed ;
-        Log.i(TAG,"onNestedScroll -- " + child.getBottom() + " S--" + mParentHeight) ;
-//        if (dyUnconsumed > 0 && child.getVisibility() == View.GONE) { // 完全隐藏
-////            Log.i(TAG,"显示") ;
-//        } else if (dyConsumed < 0 && child.getVisibility() == View.VISIBLE) { //完全顯示
-////            Log.i(TAG,"隐藏") ;
-//            runSlide(child,target,dyUnconsumed) ;
-//        }
-        if (child.getBottom() >= mParentHeight){
-            runSlide(child,target,dyUnconsumed) ;
+        this.mLastdyUnconsumed = dyUnconsumed;
+        if (child.getBottom() >= mParentHeight) {
+            runSlide(child, target, dyUnconsumed);
         }
     }
 
@@ -70,17 +70,27 @@ public class PullImgStretchBehaviorHelp extends AppBarLayout.Behavior{
 //        mTotalDy += -dy;
 //        mTotalDy = Math.min(mTotalDy, TARGET_HEIGHT);
 //        // 不能超过最大滑动距离
-//        mLastScale = Math.max(1f, 1f + mTotalDy / TARGET_HEIGHT);
+        float sss = (float) -dy * 2 / (float) mParentHeight;
+        float mLastScale = Math.max(1f, 1f + sss);
 //        // bit图片的最大伸展程度
 //        mBigStretchView.setScaleX(mLastScale);
 //        mBigStretchView.setScaleY(mLastScale);
 //        // 图片伸展
 //        mLastBottom = mParentHeight + (int) (mBigStretchViewHeight / 2 * (mLastScale - 1));
         // 计算目标View放大后增加的高度
+        if (null != mPullStretchBehaviorListener) {
+            mPullStretchBehaviorListener.pullStretchBehaviorSlide(mLastScale);
+        }
+
+
         abl.setBottom(-dy + mParentHeight);
         target.setScrollY(0);
 
 //        mUIToolView.setTop(mLastBottom - mUIToolViewHeight);
 //        mUIToolView.setBottom(mLastBottom);
+    }
+
+    public interface PullStretchBehaviorListener {
+        public void pullStretchBehaviorSlide(float mLastScale);
     }
 }

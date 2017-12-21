@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MaterialBehaviorDemo.iml" filepath="$PROJECT_DIR$/MaterialBehaviorDemo.iml" />
-      <module fileurl="file://E:\Work\AndroidStudioProject\MaterialBehaviorDemo\MaterialBehaviorDemo.iml" filepath="E:\Work\AndroidStudioProject\MaterialBehaviorDemo\MaterialBehaviorDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://E:\Work\AndroidStudioProject\MaterialBehaviorDemo\app\app.iml" filepath="E:\Work\AndroidStudioProject\MaterialBehaviorDemo\app\app.iml" />
     </modules>
   </component>
 </project>
